@@ -1,0 +1,25 @@
+export const SITE = {
+  name: "Vellora Agency",
+  shortName: "Vellora",
+  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://vellora.dynamisos.in",
+  tagline: "Websites, Apps, AI & Automation for Startups",
+  description:
+    "Vellora Agency is a tech agency for small startups. We design and build high-converting websites, mobile apps, AI solutions, and automation systems with senior craft and startup speed.",
+  email: "velloraagency@dynamisos.in",
+  bookingUrl: "https://cal.com/satyam-singh-oshgny/15min",
+  locale: "en_US",
+  keywords: [
+    "startup website agency",
+    "web design for startups",
+    "mobile app development",
+    "SEO for startups",
+    "MVP development agency",
+    "Next.js agency",
+    "AI solutions for startups",
+    "automation systems",
+    "AI development agency",
+    "business automation",
+    "Vellora Agency",
+    "Vellora",
+  ],
+} as const;

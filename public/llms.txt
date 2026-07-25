@@ -1,0 +1,18 @@
+# Vellora Agency — llms.txt
+# https://vellora.dynamisos.in
+
+> Vellora Agency is a tech agency for small startups. We design and build websites, mobile apps, and SEO systems with senior craft and startup speed.
+
+## Services
+- Website design & development (marketing sites, product pages, landing pages)
+- Mobile & web app development (MVPs, dashboards, React Native)
+- SEO optimization (technical SEO, content architecture, analytics)
+- Growth stack (branding, integrations, retainers)
+
+## How to contact
+- Book a meeting: https://cal.com/satyam-singh-oshgny/15min
+- Email: velloraagency@dynamisos.in
+- Website: https://vellora.dynamisos.in
+
+## Ideal clients
+Early-stage startups and small teams that need agency-quality websites, apps, or SEO without enterprise bloat.
