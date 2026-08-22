@@ -1,13 +1,13 @@
-import type { Metadata } from "next";
+import { pageMetadata } from "../../lib/seo";
 import PageShell from "../../components/PageShell";
 import ContentPage from "../../components/ContentPage";
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: "SEO Optimization",
   description:
     "Technical SEO and content architecture for startups — get found without burning ad spend. Vellora Agency SEO services.",
-  alternates: { canonical: "/services/seo" },
-};
+  path: "/services/seo",
+});
 
 export default function SeoPage() {
   return (

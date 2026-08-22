@@ -5,7 +5,7 @@ import {
   DM_Sans,
   Caveat,
 } from "next/font/google";
-import { SITE } from "./lib/seo";
+import { SITE, OG_IMAGE_PATH } from "./lib/seo";
 import JsonLd from "./components/JsonLd";
 import "./globals.css";
 
@@ -61,11 +61,28 @@ export const metadata: Metadata = {
     siteName: SITE.name,
     title: `${SITE.name} — ${SITE.tagline}`,
     description: SITE.description,
+    images: [
+      {
+        url: OG_IMAGE_PATH,
+        width: 1200,
+        height: 630,
+        alt: `${SITE.name} — ${SITE.tagline}`,
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
+    site: SITE.twitterSite,
     title: `${SITE.name} — ${SITE.tagline}`,
     description: SITE.description,
+    images: [
+      {
+        url: OG_IMAGE_PATH,
+        width: 1200,
+        height: 630,
+        alt: `${SITE.name} — ${SITE.tagline}`,
+      },
+    ],
   },
   robots: {
     index: true,

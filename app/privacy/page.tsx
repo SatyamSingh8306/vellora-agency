@@ -1,13 +1,12 @@
-import type { Metadata } from "next";
 import PageShell from "../components/PageShell";
 import ContentPage from "../components/ContentPage";
-import { SITE } from "../lib/seo";
+import { SITE, pageMetadata } from "../lib/seo";
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: "Privacy Policy",
   description: `Privacy Policy for ${SITE.name} — how we handle information on this site.`,
-  alternates: { canonical: "/privacy" },
-};
+  path: "/privacy",
+});
 
 export default function PrivacyPage() {
   return (

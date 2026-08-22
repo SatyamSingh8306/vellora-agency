@@ -1,16 +1,16 @@
-import type { Metadata } from "next";
+import { pageMetadata } from "../lib/seo";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import PageShell from "../components/PageShell";
 import BookMeeting from "../components/BookMeeting";
 import WorkProjects from "../components/WorkProjects";
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: "Work",
   description:
     "Selected Vellora Agency work — Philorium, DynamisOS, AetherMind, Orkaive. Live product and marketing sites we've shipped.",
-  alternates: { canonical: "/work" },
-};
+  path: "/work",
+});
 
 export default function WorkPage() {
   return (

@@ -1,14 +1,14 @@
-import type { Metadata } from "next";
+import { pageMetadata } from "../lib/seo";
 import Link from "next/link";
 import PageShell from "../components/PageShell";
 import ContentPage from "../components/ContentPage";
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: "Services",
   description:
     "Vellora Agency services for startups — websites, apps, SEO, and growth systems built with senior craft.",
-  alternates: { canonical: "/services" },
-};
+  path: "/services",
+});
 
 const LINKS = [
   {

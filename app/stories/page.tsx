@@ -1,13 +1,13 @@
-import type { Metadata } from "next";
+import { pageMetadata } from "../lib/seo";
 import PageShell from "../components/PageShell";
 import ContentPage from "../components/ContentPage";
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: "Customer Stories",
   description:
     "What founders say about working with Vellora Agency on websites, apps, and SEO.",
-  alternates: { canonical: "/stories" },
-};
+  path: "/stories",
+});
 
 const QUOTES = [
   {

@@ -1,13 +1,13 @@
-import type { Metadata } from "next";
+import { pageMetadata } from "../lib/seo";
 import PageShell from "../components/PageShell";
 import ContentPage from "../components/ContentPage";
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: "Process",
   description:
     "How Vellora Agency works — diagnose, design, build, and grow. A clear process for startup website, app, and SEO projects.",
-  alternates: { canonical: "/process" },
-};
+  path: "/process",
+});
 
 const STEPS = [
   {
