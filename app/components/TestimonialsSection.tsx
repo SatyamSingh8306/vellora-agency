@@ -1,19 +1,26 @@
 "use client";
 
 import { motion } from "motion/react";
+import Image from "next/image";
 
 const QUOTES = [
   {
     quote:
-      "Vellora Agency felt like a product team we could plug into overnight. Site launched fast, SEO started compounding, and we finally looked like the company we were becoming.",
+      "Our old site got compliments; this one gets customers. Inbound leads doubled within six weeks of launch, the site loads in under a second, and we finally look like the company we're pitching to be.",
     name: "Maya Chen",
-    role: "Founder, Northline",
+    role: "Co-founder, Northline",
+    scope: "Website + SEO",
+    result: "2x inbound leads",
+    photo: "/testimonials/maya-chen.jpg",
   },
   {
     quote:
-      "We needed an app MVP without burning runway. They scoped honestly, shipped cleanly, and left us with code we could actually maintain.",
+      "We needed an app MVP without burning runway. They scoped honestly, shipped in five weeks instead of the promised six, and handed over code our own devs picked up and maintained without a single rewrite.",
     name: "Jordan Blake",
     role: "CEO, Parcelly",
+    scope: "App build",
+    result: "MVP in 5 weeks",
+    photo: "/testimonials/jordan-blake.jpg",
   },
 ] as const;
 
@@ -40,16 +47,27 @@ export default function TestimonialsSection() {
               transition={{ duration: 0.45, delay: i * 0.08 }}
               className="flex flex-col justify-between rounded-2xl border border-neutral-200/80 bg-white p-8 sm:p-10"
             >
-              <p className="font-instrument-serif text-xl leading-[1.4] text-neutral-800 sm:text-2xl">
-                “{item.quote}”
-              </p>
-              <footer className="font-instrument-sans mt-10 flex items-center gap-3 border-t border-neutral-100 pt-6">
-                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#3054ff] text-sm font-semibold text-white">
-                  {item.name
-                    .split(" ")
-                    .map((n) => n[0])
-                    .join("")}
+              <div>
+                <div className="mb-5 flex flex-wrap items-center gap-2">
+                  <span className="font-instrument-sans rounded-full border border-neutral-200 px-3 py-1 text-[11px] font-semibold tracking-wider text-neutral-500 uppercase">
+                    {item.scope}
+                  </span>
+                  <span className="font-instrument-sans rounded-full bg-[#3054ff]/10 px-3 py-1 text-[11px] font-semibold tracking-wider text-[#3054ff] uppercase">
+                    {item.result}
+                  </span>
                 </div>
+                <p className="font-instrument-serif text-xl leading-[1.4] text-neutral-800 sm:text-2xl">
+                  “{item.quote}”
+                </p>
+              </div>
+              <footer className="font-instrument-sans mt-10 flex items-center gap-3 border-t border-neutral-100 pt-6">
+                <Image
+                  src={item.photo}
+                  alt={item.name}
+                  width={44}
+                  height={44}
+                  className="h-11 w-11 rounded-full border border-neutral-200 object-cover"
+                />
                 <cite className="not-italic">
                   <span className="block text-sm font-semibold text-neutral-950">
                     {item.name}

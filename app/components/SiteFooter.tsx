@@ -5,6 +5,7 @@ import Link from "next/link";
 import BookMeeting from "./BookMeeting";
 import VelloraLogo from "./VelloraLogo";
 import FooterSubscribe from "./FooterSubscribe";
+import { CONTACT_EMAIL, CONTACT_MAILTO } from "../lib/constants";
 import "./SiteFooter.css";
 
 const FOOTER_VIDEO =
@@ -143,7 +144,14 @@ export default function SiteFooter() {
 
           <div className="footer-bottom">
             <p className="footer-copyright">
-              © 2026 Vellora Agency. All rights reserved.
+              © 2026 Vellora Agency. All rights reserved.{" "}
+              <a
+                href={CONTACT_MAILTO}
+                className="footer-copyright-link"
+                aria-label={`Email us at ${CONTACT_EMAIL}`}
+              >
+                {CONTACT_EMAIL}
+              </a>
             </p>
             <div className="footer-cta-mini">
               <h4>

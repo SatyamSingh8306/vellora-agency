@@ -45,7 +45,7 @@ export default function AiHero() {
 
   return (
     <section
-      className="relative min-h-screen w-full overflow-hidden bg-[#000000] text-white"
+      className="relative min-h-screen w-full overflow-x-clip overflow-y-hidden bg-[#000000] text-white"
       aria-label="Hero"
     >
       <video
@@ -61,12 +61,12 @@ export default function AiHero() {
 
       <div className="absolute inset-0 bg-black/60 backdrop-blur-[2px]" />
 
-      <div className="pointer-events-none absolute top-[-20%] left-[20%] h-[600px] w-[600px] bg-blue-900/20 blur-[120px] mix-blend-screen" />
-      <div className="pointer-events-none absolute right-[20%] bottom-[-10%] h-[500px] w-[500px] bg-indigo-900/20 blur-[120px] mix-blend-screen" />
+      <div className="pointer-events-none absolute top-[-20%] left-[10%] h-[420px] w-[420px] bg-blue-900/20 blur-[100px] mix-blend-screen sm:left-[20%] sm:h-[600px] sm:w-[600px] sm:blur-[120px]" />
+      <div className="pointer-events-none absolute right-[10%] bottom-[-10%] h-[360px] w-[360px] bg-indigo-900/20 blur-[100px] mix-blend-screen sm:right-[20%] sm:h-[500px] sm:w-[500px] sm:blur-[120px]" />
 
-      <div className="relative z-10 mx-auto mt-20 flex min-h-screen max-w-5xl flex-col items-center justify-center space-y-12 px-6 pb-20 text-center">
+      <div className="relative z-10 mx-auto mt-20 flex min-h-screen max-w-5xl flex-col items-center justify-center space-y-8 px-4 pb-20 text-center sm:space-y-12 sm:px-6">
         <motion.p
-          className="font-instrument-serif text-3xl leading-[1.1] text-white sm:text-5xl lg:text-[48px]"
+          className="font-instrument-serif px-2 text-2xl leading-[1.15] text-white sm:px-0 sm:text-5xl lg:text-[48px]"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
@@ -75,7 +75,7 @@ export default function AiHero() {
         </motion.p>
 
         <motion.h1
-          className="font-instrument-sans bg-gradient-to-b from-white via-white to-[#b4c0ff] bg-clip-text text-6xl leading-[0.9] font-semibold tracking-tighter text-transparent sm:text-8xl lg:text-[136px]"
+          className="font-instrument-sans bg-gradient-to-b from-white via-white to-[#b4c0ff] bg-clip-text text-5xl leading-[0.95] font-semibold tracking-tighter text-transparent sm:text-8xl lg:text-[136px]"
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 0.2, duration: 0.6 }}
@@ -84,7 +84,7 @@ export default function AiHero() {
         </motion.h1>
 
         <motion.p
-          className="font-instrument-sans max-w-xl text-lg leading-[1.65] text-white sm:text-[20px]"
+          className="font-instrument-sans max-w-xl px-2 text-base leading-[1.65] text-white sm:px-0 sm:text-[20px]"
           initial={{ opacity: 0 }}
           animate={{ opacity: 0.7 }}
           transition={{ delay: 0.4, duration: 0.6 }}

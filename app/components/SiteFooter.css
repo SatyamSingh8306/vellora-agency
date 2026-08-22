@@ -277,6 +277,16 @@
   color: #9ca3af;
 }
 
+.footer-copyright-link {
+  color: #6b7280;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.footer-copyright-link:hover {
+  color: #1f65d6;
+}
+
 .footer-cta-mini {
   display: flex;
   flex-direction: column;
@@ -401,8 +411,21 @@
 }
 
 @media (max-width: 560px) {
+  .footer-section {
+    padding-bottom: 32px;
+  }
+
+  .footer-watermark {
+    margin-top: 8px;
+    line-height: normal;
+  }
+
   .footer-right {
     padding: 24px;
+  }
+
+  .footer-left {
+    min-height: 200px;
   }
 
   .footer-nav-cols {

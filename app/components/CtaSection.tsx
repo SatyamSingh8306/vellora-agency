@@ -3,6 +3,7 @@
 import { motion } from "motion/react";
 import { ArrowRight } from "lucide-react";
 import BookMeeting from "./BookMeeting";
+import { CONTACT_EMAIL, CONTACT_MAILTO } from "../lib/constants";
 
 export default function CtaSection() {
   return (
@@ -33,6 +34,16 @@ export default function CtaSection() {
             </span>
           </BookMeeting>
         </div>
+
+        <p className="font-instrument-sans mt-6 text-sm text-neutral-400">
+          Prefer email?{" "}
+          <a
+            href={CONTACT_MAILTO}
+            className="font-medium text-neutral-600 underline decoration-neutral-300 underline-offset-4 transition-colors hover:text-[#3054ff] hover:decoration-[#3054ff]"
+          >
+            {CONTACT_EMAIL}
+          </a>
+        </p>
       </motion.div>
     </section>
   );

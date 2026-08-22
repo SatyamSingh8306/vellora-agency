@@ -11,24 +11,28 @@ const SERVICES = [
     title: "Websites",
     href: "/services/websites",
     desc: "Marketing sites and product pages that load fast, look sharp, and turn visitors into customers.",
+    price: "From $1,500",
   },
   {
     index: "02",
     title: "Apps",
     href: "/services/apps",
     desc: "iOS, Android, and web apps scoped for startups — clean UX, solid code, ready to launch.",
+    price: "From $4,000",
   },
   {
     index: "03",
     title: "SEO",
     href: "/services/seo",
     desc: "Technical foundations and content systems that help you rank without pouring budget into ads.",
+    price: "From $600/mo",
   },
   {
     index: "04",
     title: "Growth stack",
     href: "/services",
     desc: "Brand, integrations, and retainers so your digital presence keeps compounding after launch.",
+    price: "Custom",
   },
 ] as const;
 
@@ -52,6 +56,10 @@ export default function ServicesSection() {
           <p className="font-instrument-sans mt-5 max-w-md text-base leading-relaxed text-neutral-500">
             One partner for websites, apps, and SEO. Senior craft, clear scope,
             startup-friendly timelines.
+          </p>
+          <p className="font-instrument-sans mt-3 max-w-md text-sm leading-relaxed text-neutral-400">
+            Most projects run $1,500–$10,000 — scoped and fixed before we
+            start, no surprises.
           </p>
           <BookMeeting className="font-instrument-sans mt-8 inline-flex cursor-pointer items-center gap-2 text-sm font-semibold text-neutral-950 transition-colors hover:text-[#3054ff]">
             Book a meeting
@@ -82,6 +90,9 @@ export default function ServicesSection() {
                   <p className="font-instrument-sans mt-2 max-w-md text-[15px] leading-relaxed text-neutral-500">
                     {service.desc}
                   </p>
+                  <span className="font-instrument-sans mt-3 inline-block text-[13px] font-semibold tracking-wide text-neutral-400">
+                    {service.price}
+                  </span>
                 </div>
                 <ArrowUpRight className="col-start-2 mt-1 h-5 w-5 text-neutral-300 transition-colors group-hover:text-[#3054ff] sm:col-start-auto sm:mt-0" />
               </Link>
