@@ -17,10 +17,24 @@ function fitWatermark() {
   if (!svg || !(text instanceof SVGGraphicsElement)) return;
   try {
     const bbox = text.getBBox();
-    svg.setAttribute(
-      "viewBox",
-      `${bbox.x} ${bbox.y} ${bbox.width} ${bbox.height}`,
-    );
+    let vx = bbox.x;
+    let vw = bbox.width;
+    const ctx = document.createElement("canvas").getContext("2d");
+    if (ctx) {
+      const style = getComputedStyle(text);
+      ctx.font = `${style.fontWeight} ${style.fontSize} ${style.fontFamily}`;
+      ctx.textAlign = "center";
+      if ("letterSpacing" in ctx) {
+        ctx.letterSpacing = style.letterSpacing;
+      }
+      const m = ctx.measureText(text.textContent ?? "");
+      if (Number.isFinite(m.actualBoundingBoxLeft) && Number.isFinite(m.actualBoundingBoxRight)) {
+        const half = Math.max(m.actualBoundingBoxLeft, m.actualBoundingBoxRight);
+        vx = 500 - half;
+        vw = half * 2;
+      }
+    }
+    svg.setAttribute("viewBox", `${vx} ${bbox.y} ${vw} ${bbox.height}`);
   } catch {
     /* ignore */
   }
@@ -143,16 +157,6 @@ export default function SiteFooter() {
           </div>
 
           <div className="footer-bottom">
-            <p className="footer-copyright">
-              © 2026 Vellora Agency. All rights reserved.{" "}
-              <a
-                href={CONTACT_MAILTO}
-                className="footer-copyright-link"
-                aria-label={`Email us at ${CONTACT_EMAIL}`}
-              >
-                {CONTACT_EMAIL}
-              </a>
-            </p>
             <div className="footer-cta-mini">
               <h4>
                 Ready for a site that sells?

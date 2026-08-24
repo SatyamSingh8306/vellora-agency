@@ -16,6 +16,7 @@
 
 .footer-left {
   position: relative;
+  min-width: 0;
   min-height: 340px;
   border-radius: 28px;
   padding: 32px;
@@ -140,6 +141,7 @@
 }
 
 .footer-right {
+  min-width: 0;
   background: #f0f1f5;
   border-radius: 28px;
   padding: 40px;
@@ -320,6 +322,7 @@
 
 .footer-subscribe-row input {
   flex: 1;
+  min-width: 0;
   padding: 11px 14px;
   background: transparent;
   border: none;
@@ -434,7 +437,7 @@
 
   .footer-bottom {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: stretch;
     gap: 24px;
   }
 
