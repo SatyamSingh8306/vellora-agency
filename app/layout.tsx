@@ -5,8 +5,9 @@ import {
   DM_Sans,
   Caveat,
 } from "next/font/google";
-import { SITE, OG_IMAGE_PATH } from "./lib/seo";
+import { SITE, OG_IMAGE_PATH, siteGraph } from "./lib/seo";
 import JsonLd from "./components/JsonLd";
+import MotionProvider from "./components/MotionProvider";
 import "./globals.css";
 
 const instrumentSans = Instrument_Sans({
@@ -45,7 +46,6 @@ export const metadata: Metadata = {
     template: `%s | ${SITE.name}`,
   },
   description: SITE.description,
-  keywords: [...SITE.keywords],
   applicationName: SITE.name,
   authors: [{ name: SITE.name, url: SITE.url }],
   creator: SITE.name,
@@ -72,7 +72,6 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    site: SITE.twitterSite,
     title: `${SITE.name} — ${SITE.tagline}`,
     description: SITE.description,
     images: [
@@ -129,8 +128,8 @@ export default function RootLayout({
         >
           Skip to main content
         </a>
-        <JsonLd />
-        {children}
+        <JsonLd data={siteGraph()} />
+        <MotionProvider>{children}</MotionProvider>
       </body>
     </html>
   );

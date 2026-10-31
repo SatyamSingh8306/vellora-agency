@@ -1,5 +1,4 @@
 import Link from "next/link";
-import BookMeeting from "./BookMeeting";
 import { ArrowRight } from "lucide-react";
 
 type ContentPageProps = {
@@ -16,7 +15,7 @@ export default function ContentPage({
   children,
 }: ContentPageProps) {
   return (
-    <div className="mx-auto max-w-3xl px-6 pb-20 lg:px-10">
+    <article className="mx-auto max-w-3xl px-6 pb-20 lg:px-10">
       <p className="font-instrument-sans mb-3 text-xs font-semibold tracking-[0.2em] text-[#3054ff] uppercase">
         {eyebrow}
       </p>
@@ -30,12 +29,12 @@ export default function ContentPage({
         {children}
       </div>
       <div className="mt-14 flex flex-wrap items-center gap-4 border-t border-neutral-200 pt-10">
-        <BookMeeting className="font-instrument-sans group inline-flex cursor-pointer items-center rounded-full bg-neutral-950 py-2 pr-2 pl-6 text-sm font-medium text-white transition-all hover:bg-neutral-800">
-          Book a Meeting
+        <Link href="/contact" className="font-instrument-sans group inline-flex cursor-pointer items-center rounded-full bg-neutral-950 py-2 pr-2 pl-6 text-sm font-medium text-white transition-all hover:bg-neutral-800">
+          Start a project
           <span className="ml-3 flex h-9 w-9 items-center justify-center rounded-full bg-[#3054ff] transition-colors group-hover:bg-[#2040e0]">
             <ArrowRight className="h-4 w-4 text-white" aria-hidden="true" />
           </span>
-        </BookMeeting>
+        </Link>
         <Link
           href="/"
           className="font-instrument-sans text-sm font-medium text-neutral-500 transition-colors hover:text-neutral-950"
@@ -43,6 +42,6 @@ export default function ContentPage({
           ← Back home
         </Link>
       </div>
-    </div>
+    </article>
   );
 }

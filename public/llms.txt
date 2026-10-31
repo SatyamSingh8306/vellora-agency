@@ -1,18 +1,37 @@
 # Vellora Agency — llms.txt
 # https://vellora.dynamisos.in
 
-> Vellora Agency is a tech agency for small startups. We design and build websites, mobile apps, and SEO systems with senior craft and startup speed.
+> Vellora Agency helps startups and growing businesses build websites, web and mobile apps, AI integrations, workflow automation, and SEO foundations.
 
 ## Services
-- Website design & development (marketing sites, product pages, landing pages)
-- Mobile & web app development (MVPs, dashboards, React Native)
-- SEO optimization (technical SEO, content architecture, analytics)
-- Growth stack (branding, integrations, retainers)
+- [Website design & development](https://vellora.dynamisos.in/services/websites): business websites, marketing sites, landing pages, redesigns, and content editing.
+- [Web & mobile app development](https://vellora.dynamisos.in/services/apps): MVPs, customer portals, dashboards, and integrations.
+- [AI development & automation](https://vellora.dynamisos.in/services/ai): AI assistants, knowledge search, product integrations, and business workflows.
+- [SEO services](https://vellora.dynamisos.in/services/seo): technical SEO, on-page optimization, content planning, and performance reviews.
+- [Ongoing support](https://vellora.dynamisos.in/services#support): maintenance, content updates, and integrations.
+
+## Explore Vellora
+- [Portfolio](https://vellora.dynamisos.in/work): selected website and product builds.
+- [Our process](https://vellora.dynamisos.in/process): discovery, design, development, and launch.
+- [Client results](https://vellora.dynamisos.in/stories): project outcomes shared by Vellora.
+- [LinkedIn](https://www.linkedin.com/showcase/vellora-agency): Vellora Agency’s company page.
 
 ## How to contact
+- Start a project: https://vellora.dynamisos.in/contact
 - Book a meeting: https://cal.com/satyam-singh-oshgny/15min
 - Email: velloraagency@dynamisos.in
 - Website: https://vellora.dynamisos.in
 
 ## Ideal clients
-Early-stage startups and small teams that need agency-quality websites, apps, or SEO without enterprise bloat.
+Startups and growing businesses that need websites, apps, AI, or SEO with a clear project scope.
+
+## Client case study
+- Ecotone Tours & Travels: https://vellora.dynamisos.in/work/ecotone
+
+Vellora helped Ecotone build its website. Vellora reports website-driven clients
+and positive founder feedback from Kevisi. Specific ranking positions, traffic
+figures, and a verbatim founder testimonial have not been published.
+
+## Policies
+- [Privacy policy](https://vellora.dynamisos.in/privacy)
+- [Terms of service](https://vellora.dynamisos.in/terms)

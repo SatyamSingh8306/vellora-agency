@@ -2,12 +2,7 @@ import { pageMetadata } from "../lib/seo";
 import PageShell from "../components/PageShell";
 import ContentPage from "../components/ContentPage";
 
-export const metadata = pageMetadata({
-  title: "Process",
-  description:
-    "How Vellora Agency works — diagnose, design, build, and grow. A clear process for startup website, app, and SEO projects.",
-  path: "/process",
-});
+export const metadata = pageMetadata("/process");
 
 const STEPS = [
   {
@@ -34,7 +29,7 @@ const STEPS = [
 
 export default function ProcessPage() {
   return (
-    <PageShell>
+    <PageShell path="/process">
       <ContentPage
         eyebrow="Process"
         title="Brief to launch. No agency drag."

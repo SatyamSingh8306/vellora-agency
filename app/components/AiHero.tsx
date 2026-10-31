@@ -1,45 +1,54 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { preload } from "react-dom";
 import Hls from "hls.js";
 import { motion } from "motion/react";
 import { ArrowRight } from "lucide-react";
-import BookMeeting from "./BookMeeting";
+import Link from "next/link";
 
 const VIDEO_SRC =
   "https://stream.mux.com/T6oQJQ02cQ6N01TR6iHwZkKFkbepS34dkkIc9iukgy400g.m3u8";
 
-const POSTER_SRC = "/hero-static-banner-fallback.png";
+const POSTER_SRC = "/hero-static-banner-fallback.webp";
 
 export default function AiHero() {
+  preload(POSTER_SRC, { as: "image", fetchPriority: "high" });
   const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const onPreferenceChange = () => { if (reducedMotion.matches) video.pause(); };
+    reducedMotion.addEventListener("change", onPreferenceChange);
+    if (reducedMotion.matches) return () => reducedMotion.removeEventListener("change", onPreferenceChange);
 
     if (Hls.isSupported()) {
       const hls = new Hls();
       hls.loadSource(VIDEO_SRC);
       hls.attachMedia(video);
       hls.on(Hls.Events.MANIFEST_PARSED, () => {
-        video.play().catch((e) => console.log("Auto-play prevented:", e));
+        if (!reducedMotion.matches) void video.play().catch(() => {});
       });
       return () => {
         hls.destroy();
+        reducedMotion.removeEventListener("change", onPreferenceChange);
       };
     }
 
     if (video.canPlayType("application/vnd.apple.mpegurl")) {
       video.src = VIDEO_SRC;
       const onLoaded = () => {
-        video.play().catch((e) => console.log("Auto-play prevented:", e));
+        if (!reducedMotion.matches) void video.play().catch(() => {});
       };
       video.addEventListener("loadedmetadata", onLoaded);
       return () => {
         video.removeEventListener("loadedmetadata", onLoaded);
+        reducedMotion.removeEventListener("change", onPreferenceChange);
       };
     }
+    return () => reducedMotion.removeEventListener("change", onPreferenceChange);
   }, []);
 
   return (
@@ -70,16 +79,16 @@ export default function AiHero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          Agency craft for ambitious startups
+          Websites, apps, AI, and SEO
         </motion.p>
 
         <motion.h1
-          className="font-instrument-sans bg-gradient-to-b from-white via-white to-[#b4c0ff] bg-clip-text text-5xl leading-[0.95] font-semibold tracking-tighter text-transparent sm:text-8xl lg:text-[136px]"
-          initial={{ opacity: 0, scale: 0.9 }}
+          className="font-instrument-sans max-w-4xl text-5xl leading-[1.02] font-semibold tracking-tighter text-white sm:text-7xl lg:text-[92px]"
+          initial={false}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 0.2, duration: 0.6 }}
         >
-          Build Faster
+          Websites, apps, and AI built for growth.
         </motion.h1>
 
         <motion.p
@@ -88,8 +97,9 @@ export default function AiHero() {
           animate={{ opacity: 0.7 }}
           transition={{ delay: 0.4, duration: 0.6 }}
         >
-          Websites, apps, and SEO systems that help small startups look
-          enterprise — and grow like it.
+          We help startups and growing businesses launch websites, build apps,
+          integrate AI, and get found. Clear scope, thoughtful design, and a practical
+          path from idea to launch.
         </motion.p>
 
         <motion.div
@@ -98,14 +108,14 @@ export default function AiHero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.6, duration: 0.5 }}
         >
-          <BookMeeting className="font-instrument-sans group inline-flex cursor-pointer items-center rounded-full bg-white py-2 pr-2 pl-6 text-lg font-medium text-[#0a0400] transition-all duration-300 hover:scale-105 hover:shadow-[0_0_20px_rgba(255,255,255,0.3)]">
-            Book a Meeting
+          <Link href="/contact" className="font-instrument-sans group inline-flex cursor-pointer items-center rounded-full bg-white py-2 pr-2 pl-6 text-lg font-medium text-[#0a0400] transition-colors hover:bg-neutral-100">
+            Start a project
             <span className="ml-3 flex h-10 w-10 items-center justify-center rounded-full bg-[#3054ff] transition-colors group-hover:bg-[#2040e0]">
               <ArrowRight className="h-5 w-5 text-white" aria-hidden="true" />
             </span>
-          </BookMeeting>
+          </Link>
 
-          <a
+          <Link
             href="/work"
             className="font-instrument-sans group inline-flex items-center gap-2 rounded-lg px-4 py-2 text-white/70 backdrop-blur-sm transition-colors hover:bg-white/5 hover:text-white"
           >
@@ -114,7 +124,7 @@ export default function AiHero() {
               className="h-4 w-4 transition-transform group-hover:translate-x-1"
               aria-hidden="true"
             />
-          </a>
+          </Link>
         </motion.div>
       </div>
     </section>

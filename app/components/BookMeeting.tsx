@@ -20,11 +20,7 @@ export default function BookMeeting({
     // If the Cal embed is unavailable (blocked by an ad blocker or slow to
     // load), fall back to opening the booking page in a new tab.
     if (!window.__velloraCalReady) {
-      setTimeout(() => {
-        if (!window.__velloraCalReady) {
-          window.open(BOOKING_URL, "_blank", "noopener,noreferrer");
-        }
-      }, 800);
+      window.open(BOOKING_URL, "_blank", "noopener,noreferrer");
     }
   }
 

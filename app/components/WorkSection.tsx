@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion } from "motion/react";
 import { ArrowUpRight } from "lucide-react";
-import BookMeeting from "./BookMeeting";
+import EcotoneFeature from "./EcotoneFeature";
 import ImageLightbox from "./ImageLightbox";
 import { WORK_PROJECTS, projectShots } from "../lib/works";
 
@@ -21,9 +21,9 @@ export default function WorkSection() {
   const activeShots = activeProject ? projectShots(activeProject) : [];
 
   return (
-    <section id="work" className="bg-white px-6 py-20 sm:py-28 lg:px-10">
+    <section id="work" className="bg-white px-6 py-16 sm:py-20 lg:px-10">
       <div className="mx-auto max-w-6xl">
-        <div className="mb-12 flex flex-col gap-4 sm:mb-14 sm:flex-row sm:items-end sm:justify-between">
+        <div className="mb-8 flex flex-col gap-4 sm:mb-10 sm:flex-row sm:items-end sm:justify-between">
           <div>
             <p className="font-instrument-sans mb-3 text-xs font-semibold tracking-[0.2em] text-[#3054ff] uppercase">
               Work
@@ -40,12 +40,11 @@ export default function WorkSection() {
               View all work
               <ArrowUpRight className="h-4 w-4" />
             </Link>
-            <BookMeeting className="font-instrument-sans inline-flex cursor-pointer items-center gap-1.5 text-sm font-semibold text-neutral-500 transition-colors hover:text-[#3054ff]">
-              Book a meeting
-            </BookMeeting>
+            <Link href="/contact" className="font-instrument-sans inline-flex min-h-11 items-center gap-1.5 text-sm font-semibold text-neutral-600 transition-colors hover:text-[#3054ff]">Start a project</Link>
           </div>
         </div>
 
+        <EcotoneFeature />
         <div className="grid gap-5 sm:grid-cols-2">
           {WORK_PROJECTS.map((project, i) => (
             <motion.div
@@ -61,14 +60,14 @@ export default function WorkSection() {
                 onClick={() =>
                   setLightbox({ projectSlug: project.slug, index: 0 })
                 }
-                className="group block w-full cursor-zoom-in overflow-hidden bg-neutral-100 text-left"
+                className="group block aspect-video w-full cursor-zoom-in overflow-hidden bg-neutral-100 text-left"
               >
                 <Image
                   src={project.hero}
                   alt={`${project.name} preview`}
                   width={800}
                   height={500}
-                  className="h-auto w-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]"
+                  className="h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]"
                   sizes="(max-width: 640px) 100vw, 50vw"
                 />
               </button>

@@ -27,9 +27,9 @@ const STEPS = [
 
 export default function ProcessSection() {
   return (
-    <section id="process" className="bg-[#f6f7f9] px-6 py-20 sm:py-28 lg:px-10">
+    <section id="process" className="bg-[#f6f7f9] px-6 py-16 sm:py-20 lg:px-10">
       <div className="mx-auto max-w-6xl">
-        <div className="mx-auto mb-14 max-w-2xl text-center sm:mb-16">
+        <div className="mx-auto mb-8 max-w-2xl text-center sm:mb-10">
           <p className="font-instrument-sans mb-3 text-xs font-semibold tracking-[0.2em] text-[#3054ff] uppercase">
             Process
           </p>
@@ -49,12 +49,12 @@ export default function ProcessSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-40px" }}
               transition={{ duration: 0.4, delay: i * 0.07 }}
-              className="bg-white p-7 sm:p-8"
+              className="bg-white p-5 sm:p-6"
             >
               <span className="font-instrument-sans text-xs font-semibold tracking-widest text-[#3054ff]">
                 {step.num}
               </span>
-              <h3 className="font-instrument-sans mt-5 text-lg font-semibold text-neutral-950">
+              <h3 className="font-instrument-sans mt-3 text-lg font-semibold text-neutral-950">
                 {step.title}
               </h3>
               <p className="font-instrument-sans mt-2 text-sm leading-relaxed text-neutral-500">

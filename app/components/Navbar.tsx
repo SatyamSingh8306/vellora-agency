@@ -11,7 +11,7 @@ const NAV_LINKS = [
   { label: "Services", href: "/services" },
   { label: "Work", href: "/work" },
   { label: "Process", href: "/process" },
-  { label: "Stories", href: "/stories" },
+  { label: "Client results", href: "/stories" },
 ] as const;
 
 export default function Navbar() {
@@ -90,15 +90,15 @@ export default function Navbar() {
           <BookMeeting
             className={`font-instrument-sans hidden cursor-pointer text-sm font-medium transition-colors sm:block ${linkColor}`}
           >
-            Book a Meeting
+            Book a call
           </BookMeeting>
-          <BookMeeting
+          <Link href="/contact"
             className={`font-instrument-sans cursor-pointer rounded-full px-3.5 py-1.5 text-xs font-semibold transition-opacity hover:opacity-90 sm:px-5 sm:py-2.5 sm:text-sm ${
               light ? "bg-neutral-950 text-white" : "bg-white text-black"
             }`}
           >
-            Get Started
-          </BookMeeting>
+            Start a project
+          </Link>
           <button
             type="button"
             aria-label={menuOpen ? "Close menu" : "Open menu"}
@@ -130,12 +130,15 @@ export default function Navbar() {
             : "border-white/15 bg-black/85 text-white shadow-xl shadow-black/40 backdrop-blur-xl"
         }`}
         aria-hidden={!menuOpen}
+        inert={!menuOpen}
+        onKeyDown={(event) => { if (event.key === "Escape") setMenuOpen(false); }}
       >
         <ul className="flex flex-col p-3">
           {NAV_LINKS.map((link) => (
             <li key={link.label}>
               <Link
                 href={link.href}
+                onClick={() => setMenuOpen(false)}
                 className={`font-instrument-sans flex items-center justify-between rounded-2xl px-4 py-3 text-base font-medium transition-colors ${
                   light
                     ? "text-neutral-700 hover:bg-neutral-100 hover:text-neutral-950"
@@ -153,13 +156,13 @@ export default function Navbar() {
             </li>
           ))}
           <li className="mt-2 px-1 pb-1">
-            <BookMeeting
+            <Link href="/contact" onClick={() => setMenuOpen(false)}
               className={`font-instrument-sans flex w-full cursor-pointer items-center justify-center rounded-2xl px-4 py-3 text-sm font-semibold transition-opacity hover:opacity-90 ${
                 light ? "bg-neutral-950 text-white" : "bg-white text-black"
               }`}
             >
-              Book a Meeting
-            </BookMeeting>
+              Start a project
+            </Link>
           </li>
         </ul>
       </div>

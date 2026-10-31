@@ -1,54 +1,19 @@
-import { pageMetadata } from "../lib/seo";
+import Link from "next/link";
 import PageShell from "../components/PageShell";
-import ContentPage from "../components/ContentPage";
+import EcotoneFeature from "../components/EcotoneFeature";
+import { pageMetadata } from "../lib/seo";
 
-export const metadata = pageMetadata({
-  title: "Customer Stories",
-  description:
-    "What founders say about working with Vellora Agency on websites, apps, and SEO.",
-  path: "/stories",
-});
-
-const QUOTES = [
-  {
-    quote:
-      "Vellora Agency felt like a product team we could plug into overnight. Site launched fast, SEO started compounding, and we finally looked like the company we were becoming.",
-    name: "Maya Chen",
-    role: "Founder, Northline",
-  },
-  {
-    quote:
-      "We needed an app MVP without burning runway. They scoped honestly, shipped cleanly, and left us with code we could actually maintain.",
-    name: "Jordan Blake",
-    role: "CEO, Parcelly",
-  },
-] as const;
+export const metadata = pageMetadata("/stories");
 
 export default function StoriesPage() {
   return (
-    <PageShell>
-      <ContentPage
-        eyebrow="Stories"
-        title="Founders who needed speed — and still got craft."
-        description="A few notes from teams we've partnered with on websites, apps, and growth systems."
-      >
-        <div className="space-y-10">
-          {QUOTES.map((item) => (
-            <blockquote
-              key={item.name}
-              className="border-l-2 border-[#3054ff]/40 pl-5"
-            >
-              <p className="font-instrument-serif text-xl leading-relaxed text-neutral-800">
-                “{item.quote}”
-              </p>
-              <footer className="mt-4 text-sm">
-                <span className="font-semibold text-neutral-950">{item.name}</span>
-                <span className="text-neutral-500"> · {item.role}</span>
-              </footer>
-            </blockquote>
-          ))}
-        </div>
-      </ContentPage>
+    <PageShell path="/stories">
+      <div className="mx-auto max-w-6xl px-6 pb-24 pt-5 lg:px-10">
+        <h1 className="font-instrument-serif max-w-2xl text-5xl leading-[1.08] sm:text-6xl">Good work should help the business.</h1>
+        <p className="mt-4 mb-8 max-w-2xl text-lg leading-relaxed text-neutral-600">A closer look at the work, the customer journey, and what happened after launch.</p>
+        <EcotoneFeature />
+        <div className="border-t border-neutral-200 pt-8"><h2 className="font-instrument-serif text-3xl">Have a similar goal?</h2><p className="mt-3 text-neutral-600">Tell us about your business and what you want your website to achieve.</p><Link href="/contact" className="mt-6 inline-flex min-h-12 items-center rounded-full bg-[#3054ff] px-6 py-3 font-medium text-white hover:bg-[#2040e0]">Start a project</Link></div>
+      </div>
     </PageShell>
   );
 }

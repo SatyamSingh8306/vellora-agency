@@ -2,15 +2,11 @@ import PageShell from "../components/PageShell";
 import ContentPage from "../components/ContentPage";
 import { SITE, pageMetadata } from "../lib/seo";
 
-export const metadata = pageMetadata({
-  title: "Privacy Policy",
-  description: `Privacy Policy for ${SITE.name} — how we handle information on this site.`,
-  path: "/privacy",
-});
+export const metadata = pageMetadata("/privacy");
 
 export default function PrivacyPage() {
   return (
-    <PageShell>
+    <PageShell path="/privacy">
       <ContentPage
         eyebrow="Legal"
         title="Privacy Policy"
@@ -20,8 +16,10 @@ export default function PrivacyPage() {
           Information we collect
         </h2>
         <p>
-          If you book a meeting, subscribe, or email us, we receive the details
-          you choose to share (such as name, email, and project notes). Analytics
+          If you submit a project inquiry, book a meeting, subscribe, or email us, we receive the details
+          you choose to share (such as name, email, company, project notes,
+          budget, and preferred timing). Inquiry details are used to respond to
+          your project and do not sign you up for marketing emails. Analytics
           tools may collect anonymous usage data like pages viewed and approximate
           location.
         </p>
@@ -37,6 +35,8 @@ export default function PrivacyPage() {
           Third parties
         </h2>
         <p>
+          Newsletter email addresses and project inquiry details are stored as
+          responses in separate Google Forms.
           Scheduling may be handled via Cal.com. Email delivery may be handled
           via Resend. Hosting and analytics providers may process data as needed
           to operate the site. Review their policies for details.

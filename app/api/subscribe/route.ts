@@ -3,27 +3,40 @@ import { NextResponse } from "next/server";
 import { SITE } from "@/app/lib/seo";
 
 const FROM = `Vellora Agency <${SITE.email}>`;
-const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const EMAIL_RE = /^[^\s@<>]+@[^\s@<>]+\.[^\s@<>]+$/;
+const GOOGLE_FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSfCbbis9ElBkkzYQjCX7cjU2I3fGC7VlKoM-3w8ZqoIghJa_w/formResponse";
 
 export async function POST(request: Request) {
+  let stored = false;
   try {
-    const body = (await request.json()) as { email?: string };
-    const email = body.email?.trim().toLowerCase();
+    const body = await request.json().catch(() => null);
+    const email = typeof body?.email === "string" ? body.email.trim().toLowerCase() : "";
 
-    if (!email || !EMAIL_RE.test(email)) {
+    if (!email || email.length > 254 || !EMAIL_RE.test(email)) {
       return NextResponse.json(
         { error: "Please enter a valid email address." },
         { status: 400 },
       );
     }
 
+    const response = await fetch(GOOGLE_FORM_URL, {
+      method: "POST",
+      body: new URLSearchParams({ "entry.1933550364": email }),
+      signal: AbortSignal.timeout(15_000),
+    });
+    const confirmation = await response.text();
+    // shortcut: Google Forms confirms through HTML; revisit if its confirmation markup changes.
+    if (!response.ok || !confirmation.includes('class="vHW8K"')) {
+      return NextResponse.json(
+        { error: "We couldn’t save your subscription. Please try again later." },
+        { status: 502 },
+      );
+    }
+    stored = true;
+
     const apiKey = process.env.RESEND_API_KEY;
     if (!apiKey) {
-      console.error("RESEND_API_KEY is not set");
-      return NextResponse.json(
-        { error: "Email service is not configured." },
-        { status: 500 },
-      );
+      return NextResponse.json({ ok: true });
     }
 
     const resend = new Resend(apiKey);
@@ -89,11 +102,7 @@ export async function POST(request: Request) {
     });
 
     if (notify.error) {
-      console.error("Resend notify error:", notify.error);
-      return NextResponse.json(
-        { error: "Could not send email. Please try again." },
-        { status: 502 },
-      );
+      console.error("Subscriber notification email failed");
     }
 
     const confirm = await resend.emails.send({
@@ -142,7 +151,7 @@ export async function POST(request: Request) {
                     <td>
                       <h2 class="subject" style="margin: 0 0 16px; font-size: 22px; font-weight: bold; color: #0f172a;">Thanks for Subscribing!</h2>
                       <div class="message" style="margin-bottom: 24px; line-height: 1.7; color: #334155;">
-                        <p style="margin: 0 0 12px;">You're now on the <strong>Vellora Agency</strong> list. We'll share updates on websites, apps, and SEO builds for startups.</p>
+                        <p style="margin: 0 0 12px;">You're now on the <strong>Vellora Agency</strong> list. We'll share updates on websites, apps, AI, and SEO projects.</p>
                         <p style="margin: 0 0 12px;">Want to talk about a project? Book a meeting or reply to this email.</p>
                       </div>
                       <div class="divider" style="height: 1px; background: #e2e8f0; margin: 24px 0;"></div>
@@ -174,16 +183,19 @@ export async function POST(request: Request) {
     });
 
     if (confirm.error) {
-      console.error("Resend confirm error:", confirm.error);
-      // Subscriber was still captured via notify — treat as success
+      console.error("Subscriber confirmation email failed");
     }
 
     return NextResponse.json({ ok: true });
-  } catch (err) {
-    console.error("Subscribe API error:", err);
+  } catch {
+    if (stored) {
+      console.error("Subscription saved; email delivery failed");
+      return NextResponse.json({ ok: true });
+    }
+    console.error("Subscription storage failed");
     return NextResponse.json(
-      { error: "Something went wrong. Please try again." },
-      { status: 500 },
+      { error: "We couldn’t save your subscription. Please try again later." },
+      { status: 502 },
     );
   }
 }

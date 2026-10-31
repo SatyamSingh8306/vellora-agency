@@ -312,7 +312,7 @@
 .footer-subscribe-row {
   display: flex;
   flex-direction: row;
-  width: 340px;
+  width: min(340px, 100%);
   background: #fff;
   border: 1px solid #e5e7eb;
   border-radius: 12px;

@@ -2,15 +2,11 @@ import PageShell from "../components/PageShell";
 import ContentPage from "../components/ContentPage";
 import { SITE, pageMetadata } from "../lib/seo";
 
-export const metadata = pageMetadata({
-  title: "Terms of Service",
-  description: `Terms of Service for the ${SITE.name} website and related inquiries.`,
-  path: "/terms",
-});
+export const metadata = pageMetadata("/terms");
 
 export default function TermsPage() {
   return (
-    <PageShell>
+    <PageShell path="/terms">
       <ContentPage
         eyebrow="Legal"
         title="Terms of Service"

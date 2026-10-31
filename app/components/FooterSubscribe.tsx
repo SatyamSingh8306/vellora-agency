@@ -29,7 +29,7 @@ export default function FooterSubscribe() {
       }
 
       setStatus("success");
-      setMessage("You're subscribed — check your inbox.");
+      setMessage("You’re subscribed. Thanks for joining!");
       setEmail("");
     } catch {
       setStatus("error");
@@ -40,10 +40,13 @@ export default function FooterSubscribe() {
   return (
     <div>
       <form className="footer-subscribe-row" onSubmit={onSubmit}>
+        <label htmlFor="newsletter-email" className="sr-only">Email for newsletter updates</label>
         <input
+          id="newsletter-email"
           type="email"
           name="email"
           required
+          maxLength={254}
           autoComplete="email"
           placeholder="Enter email address"
           value={email}
@@ -54,6 +57,7 @@ export default function FooterSubscribe() {
           {status === "loading" ? "Sending…" : "Subscribe"}
         </button>
       </form>
+      <p className="mt-2 text-xs text-neutral-600">For project inquiries, use <a href="/contact" className="underline underline-offset-4">Start a project</a>.</p>
       {message ? (
         <p
           className={`footer-subscribe-msg ${
