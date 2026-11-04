@@ -12,10 +12,10 @@ export default function PageShell({
   path: PagePath;
 }) {
   return (
-    <main id="main-content" className="min-h-screen bg-white text-neutral-950">
+    <main id="main-content" className="min-h-screen bg-[#f7f7f2] text-neutral-950">
       <CalProvider />
       <Navbar />
-      <div className="pt-28 sm:pt-32"><PageSeo path={path} />{children}</div>
+      <div className="pt-24 sm:pt-28"><PageSeo path={path} />{children}</div>
       <SiteFooter />
     </main>
   );

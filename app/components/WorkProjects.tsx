@@ -19,7 +19,7 @@ export default function WorkProjects() {
 
   return (
     <>
-      <div className="mx-auto max-w-6xl space-y-20 px-6 pb-24 pt-10 sm:space-y-28 sm:pt-14 lg:px-10">
+      <div className="mx-auto max-w-6xl space-y-24 px-6 pb-24 pt-14 sm:space-y-32 sm:pt-20 lg:px-10">
         {WORK_PROJECTS.map((project, index) => {
           const shots = projectShots(project);
           return (
@@ -28,15 +28,15 @@ export default function WorkProjects() {
               id={project.slug}
               className="scroll-mt-32"
             >
-              <div className="mb-6 flex flex-col gap-4 sm:mb-8 sm:flex-row sm:items-end sm:justify-between">
+              <div className="mb-7 grid gap-5 border-t border-neutral-300 pt-7 sm:mb-9 lg:grid-cols-[0.7fr_1.3fr] lg:gap-12">
                 <div>
-                  <p className="font-instrument-sans text-xs font-semibold tracking-[0.2em] text-neutral-400 uppercase">
+                  <p className="text-sm font-medium text-[#3054ff]">
                     {String(index + 1).padStart(2, "0")} · {project.category}
                   </p>
-                  <h2 className="font-instrument-sans mt-2 text-3xl font-semibold tracking-tight text-neutral-950 sm:text-4xl">
+                  <h2 className="font-instrument-serif mt-3 text-4xl leading-none text-neutral-950 sm:text-5xl">
                     {project.name}
                   </h2>
-                  <p className="font-instrument-sans mt-3 max-w-2xl text-base leading-relaxed text-neutral-500">
+                  <p className="mt-4 max-w-2xl text-base leading-relaxed text-neutral-600 lg:col-start-2">
                     {project.summary}
                   </p>
                 </div>
@@ -44,7 +44,7 @@ export default function WorkProjects() {
                   href={project.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="font-instrument-sans inline-flex shrink-0 items-center gap-2 text-sm font-semibold text-neutral-950 transition-colors hover:text-[#3054ff]"
+                  className="inline-flex min-h-11 shrink-0 items-center gap-2 text-sm font-semibold text-neutral-950 transition-colors hover:text-[#3054ff] lg:col-start-2"
                 >
                   Visit live site
                   <ArrowUpRight className="h-4 w-4" />
@@ -56,7 +56,7 @@ export default function WorkProjects() {
                 onClick={() =>
                   setLightbox({ projectSlug: project.slug, index: 0 })
                 }
-                className="group block w-full cursor-zoom-in overflow-hidden rounded-2xl border border-neutral-200 bg-neutral-100 text-left shadow-[0_20px_50px_rgba(0,0,0,0.08)]"
+                className="group block w-full cursor-zoom-in overflow-hidden rounded-[2rem] border border-neutral-200 bg-neutral-100 p-1.5 text-left shadow-[0_20px_50px_rgba(0,0,0,0.08)]"
               >
                 <Image
                   src={project.hero}

@@ -118,6 +118,7 @@ export default function SiteFooter() {
               </a>
             </div>
           </div>
+
         </div>
 
         <div className="footer-right">
@@ -164,10 +165,11 @@ export default function SiteFooter() {
 
           <div className="footer-bottom">
             <div className="footer-cta-mini">
-              <h4>Occasional notes from Vellora.<strong>Website, product, AI, and SEO updates.</strong></h4>
+              <h4><strong>Occasional updates.</strong></h4>
               <FooterSubscribe />
             </div>
           </div>
+
         </div>
       </div>
 

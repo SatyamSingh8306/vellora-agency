@@ -6,6 +6,7 @@ import Hls from "hls.js";
 import { motion } from "motion/react";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
+import EvilLink from "./EvilLink";
 
 const VIDEO_SRC =
   "https://stream.mux.com/T6oQJQ02cQ6N01TR6iHwZkKFkbepS34dkkIc9iukgy400g.m3u8";
@@ -69,19 +70,7 @@ export default function AiHero() {
 
       <div className="absolute inset-0 bg-black/60 backdrop-blur-[2px]" />
 
-      <div className="pointer-events-none absolute top-[-20%] left-[10%] h-[420px] w-[420px] bg-blue-900/20 blur-[100px] mix-blend-screen sm:left-[20%] sm:h-[600px] sm:w-[600px] sm:blur-[120px]" />
-      <div className="pointer-events-none absolute right-[10%] bottom-[-10%] h-[360px] w-[360px] bg-indigo-900/20 blur-[100px] mix-blend-screen sm:right-[20%] sm:h-[500px] sm:w-[500px] sm:blur-[120px]" />
-
       <div className="relative z-10 mx-auto mt-20 flex min-h-screen max-w-5xl flex-col items-center justify-center space-y-8 px-4 pb-20 text-center sm:space-y-12 sm:px-6">
-        <motion.p
-          className="font-instrument-serif px-2 text-2xl leading-[1.15] text-white sm:px-0 sm:text-5xl lg:text-[48px]"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-        >
-          Websites, apps, AI, and SEO
-        </motion.p>
-
         <motion.h1
           className="font-instrument-sans max-w-4xl text-5xl leading-[1.02] font-semibold tracking-tighter text-white sm:text-7xl lg:text-[92px]"
           initial={false}
@@ -92,14 +81,12 @@ export default function AiHero() {
         </motion.h1>
 
         <motion.p
-          className="font-instrument-sans max-w-xl px-2 text-base leading-[1.65] text-white sm:px-0 sm:text-[20px]"
+          className="font-instrument-sans max-w-xl px-2 text-base leading-[1.65] text-white/80 sm:px-0 sm:text-[20px]"
           initial={{ opacity: 0 }}
-          animate={{ opacity: 0.7 }}
+          animate={{ opacity: 1 }}
           transition={{ delay: 0.4, duration: 0.6 }}
         >
-          We help startups and growing businesses launch websites, build apps,
-          integrate AI, and get found. Clear scope, thoughtful design, and a practical
-          path from idea to launch.
+          Digital products designed clearly, built properly, and ready to grow.
         </motion.p>
 
         <motion.div
@@ -108,12 +95,7 @@ export default function AiHero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.6, duration: 0.5 }}
         >
-          <Link href="/contact" className="font-instrument-sans group inline-flex cursor-pointer items-center rounded-full bg-white py-2 pr-2 pl-6 text-lg font-medium text-[#0a0400] transition-colors hover:bg-neutral-100">
-            Start a project
-            <span className="ml-3 flex h-10 w-10 items-center justify-center rounded-full bg-[#3054ff] transition-colors group-hover:bg-[#2040e0]">
-              <ArrowRight className="h-5 w-5 text-white" aria-hidden="true" />
-            </span>
-          </Link>
+          <EvilLink href="/contact" className="min-h-12 px-6 text-base">Start a project</EvilLink>
 
           <Link
             href="/work"

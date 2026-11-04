@@ -17,24 +17,24 @@ const NAV_LINKS = [
 export default function Navbar() {
   const pathname = usePathname();
   const isHome = pathname === "/";
-  const [homeScrolled, setHomeScrolled] = useState(false);
+  const [navScrolled, setNavScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
-    if (!isHome) return;
     let raf = 0;
     const onScroll = () => {
       cancelAnimationFrame(raf);
       raf = requestAnimationFrame(() =>
-        setHomeScrolled(window.scrollY > 24),
+        setNavScrolled(window.scrollY > 40),
       );
     };
+    onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => {
       cancelAnimationFrame(raf);
       window.removeEventListener("scroll", onScroll);
     };
-  }, [isHome]);
+  }, [pathname]);
 
   useEffect(() => {
     if (!menuOpen) return;
@@ -45,8 +45,7 @@ export default function Navbar() {
     };
   }, [menuOpen]);
 
-  const scrolled = isHome ? homeScrolled : true;
-  const light = scrolled;
+  const light = !isHome || navScrolled;
 
   const linkColor = light
     ? "text-neutral-600 hover:text-neutral-950"
@@ -54,12 +53,16 @@ export default function Navbar() {
   const linkActive = light ? "text-neutral-950" : "text-white";
 
   return (
-    <header className="pointer-events-none fixed inset-x-0 top-0 z-50 flex justify-center px-3 pt-3 sm:px-6 sm:pt-5">
+    <header className="pointer-events-none fixed inset-x-0 top-0 z-50 flex justify-center px-3 pt-3 sm:px-6 sm:pt-4">
       <nav
-        className={`pointer-events-auto flex w-full max-w-5xl items-center justify-between gap-2 rounded-full px-3 py-2 shadow-lg backdrop-blur-xl transition-colors duration-300 sm:gap-4 sm:px-5 ${
+        className={`pointer-events-auto flex w-full items-center justify-between gap-2 rounded-2xl px-3 py-2.5 backdrop-blur-xl transition-[max-width,border-radius,padding,background-color,border-color,box-shadow] duration-500 ease-out sm:gap-4 sm:px-5 ${
+          navScrolled
+            ? "max-w-6xl md:max-w-4xl md:rounded-full md:px-4 md:py-2"
+            : "max-w-6xl md:rounded-2xl"
+        } ${
           light
-            ? "border border-neutral-200/80 bg-white/90 text-neutral-950 shadow-black/5"
-            : "border border-white/15 bg-black/55 text-white shadow-black/30"
+            ? "border border-neutral-200/80 bg-white/92 text-neutral-950 shadow-[0_8px_30px_rgba(0,0,0,0.06)]"
+            : "border border-white/15 bg-black/45 text-white"
         }`}
       >
         <Link href="/" aria-label="Vellora Agency home" className="shrink-0">
@@ -70,7 +73,7 @@ export default function Navbar() {
           />
         </Link>
 
-        <div className="hidden items-center gap-6 md:flex lg:gap-8">
+        <div className={`hidden items-center md:flex ${navScrolled ? "gap-5 lg:gap-6" : "gap-6 lg:gap-8"}`}>
           {NAV_LINKS.map((link) => (
             <Link
               key={link.label}

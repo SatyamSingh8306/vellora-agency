@@ -5,8 +5,10 @@ import Link from "next/link";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
 import BookMeeting from "./BookMeeting";
 import { CONTACT_EMAIL, CONTACT_MAILTO } from "../lib/constants";
+import MinimalButton from "@/components/evil-buttons/minimal";
 
-const inputClass = "mt-2 min-h-12 w-full rounded-xl border border-neutral-300 bg-white px-4 py-3 text-base text-neutral-950 placeholder:text-neutral-500 focus:border-[#3054ff] focus:outline-2 focus:outline-offset-2 focus:outline-[#3054ff] disabled:opacity-60";
+const inputClass = "mt-1.5 min-h-9 w-full rounded-lg border border-neutral-300 bg-[#f7f7f2] px-3.5 py-1.5 text-sm text-neutral-950 placeholder:text-neutral-500 focus:border-[#3054ff] focus:outline-2 focus:outline-offset-2 focus:outline-[#3054ff] disabled:opacity-60";
+const services = ["Website", "App or MVP", "AI & automation", "SEO", "Ongoing support", "Not sure yet"];
 
 export default function InquiryForm() {
   const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
@@ -41,7 +43,7 @@ export default function InquiryForm() {
 
   if (status === "success") {
     return (
-      <div ref={feedback} tabIndex={-1} role="status" className="rounded-2xl border border-neutral-200 bg-[#f6f7f9] p-7 sm:p-10">
+      <div ref={feedback} tabIndex={-1} role="status" className="rounded-[2rem] border border-neutral-200 bg-white p-7 shadow-[0_18px_50px_rgba(0,0,0,0.06)] sm:p-10">
         <CheckCircle2 className="mb-6 h-10 w-10 text-[#3054ff]" aria-hidden="true" />
         <h2 className="font-instrument-serif text-4xl">Your inquiry has been received.</h2>
         <p className="mt-4 leading-relaxed text-neutral-600">Thanks for telling us about your project. We’ll review your brief and reply to the email you provided with questions or a suggested next step.</p>
@@ -53,41 +55,50 @@ export default function InquiryForm() {
   }
 
   return (
-    <form onSubmit={onSubmit} className="rounded-2xl border border-neutral-200 bg-[#f6f7f9] p-6 sm:p-9" aria-busy={status === "sending"}>
-      <h2 className="font-instrument-serif text-3xl">A little about your project.</h2>
-      <p className="mt-3 text-sm leading-relaxed text-neutral-600">Only your name, email, service, and project brief are required. It’s fine if you’re still figuring things out.</p>
-      <fieldset disabled={status === "sending"} className="mt-8 grid min-w-0 gap-6 sm:grid-cols-2">
+    <form onSubmit={onSubmit} className="overflow-hidden rounded-[2rem] border border-neutral-200 bg-white shadow-[0_18px_50px_rgba(0,0,0,0.06)]" aria-busy={status === "sending"}>
+      <header className="border-b border-neutral-200 bg-[#f7f7f2] p-6 sm:p-8">
+        <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#3054ff]">Start a project</p>
+        <h2 className="font-instrument-serif mt-2 text-4xl">Tell us what you need.</h2>
+        <p className="mt-2 text-sm leading-relaxed text-neutral-600">Four essentials. The rest can wait.</p>
+      </header>
+      <fieldset disabled={status === "sending"} className="space-y-8 p-6 sm:p-8">
         <legend className="sr-only">Project inquiry details</legend>
-        <label className="text-sm font-medium">Your name <span aria-hidden="true">*</span><input className={inputClass} name="name" autoComplete="name" required maxLength={100} /></label>
-        <label className="text-sm font-medium">Email <span aria-hidden="true">*</span><input className={inputClass} name="email" type="email" autoComplete="email" required maxLength={254} /></label>
-        <label className="text-sm font-medium sm:col-span-2">Company or website <span className="font-normal text-neutral-500">(optional)</span><input className={inputClass} name="company" autoComplete="organization" maxLength={200} placeholder="Your business name or website address" /></label>
-        <label className="text-sm font-medium sm:col-span-2">What do you need help with? <span aria-hidden="true">*</span>
-          <select name="service" required defaultValue="" className={inputClass}>
-            <option value="" disabled>Select a service</option>
-            <option>Website</option><option>App or MVP</option><option>AI &amp; automation</option><option>SEO</option><option>Ongoing support</option><option>Not sure yet</option>
-          </select>
-        </label>
-        <label className="text-sm font-medium">Budget <span className="font-normal text-neutral-500">(optional)</span>
-          <input name="budget" maxLength={80} className={inputClass} placeholder="Share if you have a budget in mind" />
-        </label>
-        <label className="text-sm font-medium">Desired launch <span className="font-normal text-neutral-500">(optional)</span>
-          <select name="timeline" defaultValue="" className={inputClass}>
-            <option value="">Flexible / need advice</option><option>Within a month</option><option>In 1–3 months</option><option>In 3+ months</option><option>Exploring options</option>
-          </select>
-        </label>
-        <label className="text-sm font-medium sm:col-span-2">What would you like to build or improve? <span aria-hidden="true">*</span>
-          <textarea name="message" required minLength={20} maxLength={4000} rows={5} className={inputClass} placeholder="Tell us about your business, what you need, and what a good result would look like." aria-describedby="brief-help" />
-          <span id="brief-help" className="mt-2 block font-normal text-neutral-500">20–4,000 characters. Please leave out passwords or sensitive information.</span>
-        </label>
+        <section aria-labelledby="contact-fields" className="grid min-w-0 gap-5 sm:grid-cols-2">
+          <h3 id="contact-fields" className="font-instrument-serif text-2xl sm:col-span-2"><span className="mr-2 text-[#3054ff]">01</span>Your details</h3>
+          <label className="text-sm font-medium">Your name <span aria-hidden="true">*</span><input className={inputClass} name="name" autoComplete="name" required maxLength={100} /></label>
+          <label className="text-sm font-medium">Email <span aria-hidden="true">*</span><input className={inputClass} name="email" type="email" autoComplete="email" required maxLength={254} /></label>
+          <label className="text-sm font-medium sm:col-span-2">Company or website <span className="font-normal text-neutral-500">(optional)</span><input className={inputClass} name="company" autoComplete="organization" maxLength={200} placeholder="Business name or website" /></label>
+        </section>
+        <section aria-labelledby="service-fields">
+          <h3 id="service-fields" className="font-instrument-serif text-2xl"><span className="mr-2 text-[#3054ff]">02</span>Choose a service <span aria-hidden="true">*</span></h3>
+          <div className="mt-4 grid gap-2 sm:grid-cols-2">
+            {services.map((service) => (
+              <label key={service} className="cursor-pointer">
+                <input className="peer sr-only" type="radio" name="service" value={service} required />
+                <span className="flex min-h-9 items-center justify-between rounded-xl border border-neutral-200 px-3.5 py-1.5 text-sm font-medium transition hover:border-neutral-400 peer-checked:border-[#3054ff] peer-checked:bg-[#eef1ff] peer-checked:text-[#1738d1] peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-[#3054ff]">{service}<span aria-hidden="true" className="h-2 w-2 rounded-full border border-current" /></span>
+              </label>
+            ))}
+          </div>
+        </section>
+        <section aria-labelledby="brief-field">
+          <h3 id="brief-field" className="font-instrument-serif text-2xl"><span className="mr-2 text-[#3054ff]">03</span>Your brief <span aria-hidden="true">*</span></h3>
+          <label className="mt-4 block text-sm font-medium">What would you like to build or improve?
+            <textarea name="message" required minLength={20} maxLength={4000} rows={5} className={inputClass} placeholder="What are you building, and what would a good result look like?" aria-describedby="brief-help" />
+            <span id="brief-help" className="mt-2 block font-normal text-neutral-500">20–4,000 characters. Please leave out passwords or sensitive information.</span>
+          </label>
+        </section>
+        <details className="rounded-xl border border-neutral-200 bg-[#f7f7f2] p-4">
+          <summary className="cursor-pointer text-sm font-semibold">Add budget and timing <span className="font-normal text-neutral-500">(optional)</span></summary>
+          <div className="mt-5 grid gap-5 sm:grid-cols-2">
+            <label className="text-sm font-medium">Budget<input name="budget" maxLength={80} className={inputClass} placeholder="If you have one in mind" /></label>
+            <label className="text-sm font-medium">Desired launch<select name="timeline" defaultValue="" className={inputClass}><option value="">Flexible / need advice</option><option>Within a month</option><option>In 1–3 months</option><option>In 3+ months</option><option>Exploring options</option></select></label>
+          </div>
+        </details>
         <div hidden aria-hidden="true"><label>Leave this empty<input name="fax" tabIndex={-1} autoComplete="off" maxLength={200} /></label></div>
+        <p className="text-xs leading-relaxed text-neutral-600">We’ll use these details to respond to your inquiry. No newsletter signup. Read our <Link href="/privacy" className="underline underline-offset-4">privacy policy</Link>.</p>
+        <div ref={feedback} tabIndex={-1} role={status === "error" ? "alert" : "status"}>{error && <p className="text-sm text-red-700">{error} <a href={CONTACT_MAILTO} className="underline underline-offset-4">{CONTACT_EMAIL}</a></p>}</div>
+        <MinimalButton type="submit" disabled={status === "sending"} className="min-h-12 w-full px-6 sm:w-auto">{status === "sending" ? "Sending inquiry…" : "Send project inquiry"}</MinimalButton>
       </fieldset>
-      <p className="mt-6 text-xs leading-relaxed text-neutral-600">We’ll use these details to respond to your inquiry. No newsletter signup. Read our <Link href="/privacy" className="underline underline-offset-4">privacy policy</Link>.</p>
-      <div ref={feedback} tabIndex={-1} role={status === "error" ? "alert" : "status"} className="mt-4">
-        {error && <p className="mb-4 text-sm text-red-700">{error} <a href={CONTACT_MAILTO} className="underline underline-offset-4">{CONTACT_EMAIL}</a></p>}
-      </div>
-      <button type="submit" disabled={status === "sending"} className="inline-flex min-h-12 w-full items-center justify-center gap-3 rounded-full bg-[#3054ff] px-6 py-3 font-medium text-white transition-colors hover:bg-[#2040e0] disabled:cursor-wait disabled:opacity-60 sm:w-auto">
-        {status === "sending" ? "Sending inquiry…" : "Send project inquiry"}<ArrowRight className="h-4 w-4" aria-hidden="true" />
-      </button>
     </form>
   );
 }

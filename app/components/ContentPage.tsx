@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import EvilLink from "./EvilLink";
 
 type ContentPageProps = {
   eyebrow: string;
@@ -15,32 +15,29 @@ export default function ContentPage({
   children,
 }: ContentPageProps) {
   return (
-    <article className="mx-auto max-w-3xl px-6 pb-20 lg:px-10">
-      <p className="font-instrument-sans mb-3 text-xs font-semibold tracking-[0.2em] text-[#3054ff] uppercase">
-        {eyebrow}
-      </p>
-      <h1 className="font-instrument-serif text-4xl leading-[1.08] text-neutral-950 sm:text-5xl">
-        {title}
-      </h1>
-      <p className="font-instrument-sans mt-5 text-lg leading-relaxed text-neutral-500">
-        {description}
-      </p>
-      <div className="font-instrument-sans mt-12 space-y-8 text-base leading-relaxed text-neutral-700">
+    <article className="pb-24">
+      <header className="border-b border-white/10 bg-neutral-950 px-6 py-16 text-white sm:py-20 lg:px-10">
+        <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[0.35fr_1fr] lg:gap-16">
+          <p className="text-sm font-medium text-[#8fa2ff]">{eyebrow}</p>
+          <div>
+            <h1 className="font-instrument-serif max-w-4xl text-5xl leading-[1.02] sm:text-6xl lg:text-7xl">{title}</h1>
+            <p className="mt-6 max-w-2xl text-lg leading-relaxed text-white/70 sm:text-xl">{description}</p>
+          </div>
+        </div>
+      </header>
+      <div className="mx-auto max-w-6xl px-6 lg:px-10">
+      <div className="font-instrument-sans mt-14 max-w-3xl space-y-8 text-[17px] leading-[1.75] text-neutral-700 [&_a]:text-[#3054ff] [&_h2]:font-instrument-serif [&_h2]:text-3xl [&_h2]:font-normal [&_h2]:leading-tight [&_h2]:text-neutral-950 [&_summary]:min-h-11 [&_summary]:py-2 [&_summary]:text-neutral-950 sm:mt-20">
         {children}
       </div>
-      <div className="mt-14 flex flex-wrap items-center gap-4 border-t border-neutral-200 pt-10">
-        <Link href="/contact" className="font-instrument-sans group inline-flex cursor-pointer items-center rounded-full bg-neutral-950 py-2 pr-2 pl-6 text-sm font-medium text-white transition-all hover:bg-neutral-800">
-          Start a project
-          <span className="ml-3 flex h-9 w-9 items-center justify-center rounded-full bg-[#3054ff] transition-colors group-hover:bg-[#2040e0]">
-            <ArrowRight className="h-4 w-4 text-white" aria-hidden="true" />
-          </span>
-        </Link>
+      <div className="mt-16 flex max-w-3xl flex-wrap items-center gap-4 border-t border-neutral-300 pt-10">
+        <EvilLink href="/contact">Start a project</EvilLink>
         <Link
           href="/"
           className="font-instrument-sans text-sm font-medium text-neutral-500 transition-colors hover:text-neutral-950"
         >
           ← Back home
         </Link>
+      </div>
       </div>
     </article>
   );
